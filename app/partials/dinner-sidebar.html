@@ -1,0 +1,53 @@
+TODO in Lab 5: Display the items on the menu with cost for each -->
+
+
+<!-- Displaying number of guests both in input box and here is redundant. It is here only for the example
+purpose so you can see how some information from the model can be retrieved. In Lab 5 you will replace 
+this with Total price of the menu -->
+
+
+<div class='col-sm-4' id='myDinnerTable'> 
+    <h1> 
+    My Dinner 
+    </h1> 
+    <div style> 
+      <input type='number' size='10' id='Guests' name='mynumber' value='  numberOfGuests  ' min='1' ng-model="numberOfGuests" ng-change="setNumberOfGuest(numberOfGuests)"/> 
+      <label for='sel1'>Specify number of guests</label> 
+    </div>            
+      <table class='table'> 
+        <thead> 
+          <tr> 
+            <th>Type</th> 
+            <th>Dishes</th> 
+            <th>Cost</th> 
+            <th>Remove dish</th> 
+          </tr> 
+
+
+<!-- ng-rep menudish.... -->
+<!--         menu[i].Ingredients
+          price = price + menu[i].Ingredients[j].MetricQuantity;
+ -->
+ 
+        <tr><td> menu[i].Category </td><td>'
+        menu[i].Title </td><td> price * numberOfGuests SEK
+        </td><td><button id="menu[i].RecipeID" type="button" class="btn btn-danger removeDish">X</button></td></tr>
+
+      while(i > menu.length){
+        var price=0;
+        }
+      }
+<tr><td></td><td>Total</td><td> totalPrice SEK </td></tr>
+
+
+
+
+
+          </thead> 
+          <tbody id='menuDishes'> 
+         </tbody> 
+        </table> 
+        <button id='selectDishToDinnerOverviewButton' type='button' class='btn btn-warning'>Confirm dinner</button>
+
+        Total price: {{getNumberOfGuests()}}
+    </div><!-- myDinnerTable end

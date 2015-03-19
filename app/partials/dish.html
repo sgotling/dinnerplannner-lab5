@@ -1,0 +1,49 @@
+<!-- We include the sidebar as it is shared across two screens. -->
+<ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>
+
+<!-- TODO in Lab 5: Display the dish information including image, Description, 
+Instructions, Ingredients and total cost. -->
+{{selectedDish}}e
+
+<div class='col-sm-8' id='selectedDishInformation'> 
+    <div id='dishInformaiton' class='col-sm-6'>
+    	<h1 id='dishHead'> {{dish.Title}}</h1>
+    	<div width='100%' id='dishImage'>
+    		<img ng-src="{{dish.ImageURL}}" alt='Klematis' class='img-thumbnail' width='304' height='236'>
+    	</div>
+    	<h4>PREPARATION</h4>
+    	{{dish.Instructions}};
+
+		
+    </div><!-- / .dishInformaiton--> 
+    <div class='col-sm-4' id='ingredientsDiv'> 
+      <table class='table' id='ingTable'> 
+        <thead> 
+          <tr> 
+            <th width='5%'>Quantity</th> 
+            <th width='10%'>Ingredient</th> 
+            <th width='40%'>Price</th> 
+          </tr>
+          <tr ng-repeat="Ingredient in dish.Ingredients">
+	    	<td>{{Ingredient.MetricDisplayQuantity}} 
+	        {{Ingredient.MetricUnit}}
+	        </td>
+	        <td>{{Ingredient.Name}}
+	        </td>
+	        <td>{{Ingredient.MetricQuantity}} SEK 
+	        </td>
+	      </tr> 
+        </thead> 
+        <tbody id='tableElement'> 
+        </tbody> 
+
+      </table> 
+       <button id="confirmDish" class='btn btn-warning' ng-click="addDishToMenu()" href=>Confrim Dish</button>
+    </div>  
+    <div class='col-sm-4' style='padding:10px'> 
+      <a href="#/search" id='dishInformationToSelectDishButton' class='btn btn-warning' type='button'>Go back and edit dinner</a> 
+    </div>  
+  </div> <!-- selectedDishInformation end--> 
+
+ 
+        dish.Ingredients
