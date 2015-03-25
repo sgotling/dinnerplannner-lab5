@@ -6,6 +6,7 @@ purpose so you can see how some information from the model can be retrieved. In 
 this with Total price of the menu -->
 
 
+
 <div class='col-sm-4' id='myDinnerTable'> 
     <h1> 
     My Dinner 
@@ -29,25 +30,16 @@ this with Total price of the menu -->
           price = price + menu[i].Ingredients[j].MetricQuantity;
  -->
  
-        <tr><td> menu[i].Category </td><td>'
-        menu[i].Title </td><td> price * numberOfGuests SEK
-        </td><td><button id="menu[i].RecipeID" type="button" class="btn btn-danger removeDish">X</button></td></tr>
-
-      while(i > menu.length){
-        var price=0;
-        }
-      }
-<tr><td></td><td>Total</td><td> totalPrice SEK </td></tr>
-
-
-
-
+        <tr ng-repeat="dish in menu()"><td> {{dish.Category}} </td><td>'
+        {{dish.Title}} </td><td> {{price(dish) * getNumberOfGuests()}} SEK
+        </td><td><button id={{dish.RecipeID}} ng-click="removeDish(dish.RecipeID)"
+        type="button" class="btn btn-danger removeDish">X</button></td></tr>
 
           </thead> 
           <tbody id='menuDishes'> 
          </tbody> 
         </table> 
-        <button id='selectDishToDinnerOverviewButton' type='button' class='btn btn-warning'>Confirm dinner</button>
+        <a href="#/overview" id='selectDishToDinnerOverviewButton' type='button' class='btn btn-warning'>Confirm dinner</a>
 
         Total price: {{getNumberOfGuests()}}
     </div><!-- myDinnerTable end

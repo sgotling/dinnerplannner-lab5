@@ -1,0 +1,32 @@
+  <div id="DinnerPreparation">
+    <div class='inner'>  
+      <div class='col-sm-12' id='selectdish'> 
+        <div class='col-sm-12'> 
+          <h1>My Dinner:   numberOfGuests   people</h1> 
+          <button id='dinnerPreparationToSelectDish' type='button' class='btn btn-warning' style='float:right; padding:10pt;'>Go back and edit dinner</button> 
+        </div> 
+      </div> 
+      <div id='preparationList' >
+        <div class='col-sm-12 dishPreparation' ng-repeat="dish in menu()">
+        <div class='col-sm-6' id='pictAndDescrip'>
+            <div class='col-sm-6' style='padding:10pt' id='pict'>
+                <img ng-src="{{dish.HeroPhotoUrl}}" width='110' height='90'>
+            </div>
+            <div class='col-sm-6' id='descrip'>
+              <p>
+                <h3> {{dish.Title}} </h3>
+              </p>
+              <p>
+                {{dish.Description}} 
+              </p></div></div>
+          <div class='col-sm-6' id='preparation'>
+            <p>
+              <h4>PREPARATION</h4>
+            </p><p>
+            {{dish.Instructions}}
+            </p></div>
+          </div>
+      </div> 
+    </div>
+  </div> <!--dinnerPreparation is over-->
+

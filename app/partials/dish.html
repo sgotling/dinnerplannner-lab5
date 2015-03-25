@@ -3,13 +3,13 @@
 
 <!-- TODO in Lab 5: Display the dish information including image, Description, 
 Instructions, Ingredients and total cost. -->
-{{selectedDish}}e
+{{selectedDish}}
 
 <div class='col-sm-8' id='selectedDishInformation'> 
     <div id='dishInformaiton' class='col-sm-6'>
     	<h1 id='dishHead'> {{dish.Title}}</h1>
     	<div width='100%' id='dishImage'>
-    		<img ng-src="{{dish.ImageURL}}" alt='Klematis' class='img-thumbnail' width='304' height='236'>
+    		<img ng-src="{{dish.HeroPhotoUrl}}" class='img-thumbnail' width='304' height='236'>
     	</div>
     	<h4>PREPARATION</h4>
     	{{dish.Instructions}};
@@ -38,7 +38,7 @@ Instructions, Ingredients and total cost. -->
         </tbody> 
 
       </table> 
-       <button id="confirmDish" class='btn btn-warning' ng-click="addDishToMenu()" href=>Confrim Dish</button>
+       <a href="#/search"><button id="confirmDish" class='btn btn-warning' ng-click="addDishToMenu()" >Confrim Dish</button></a>
     </div>  
     <div class='col-sm-4' style='padding:10px'> 
       <a href="#/search" id='dishInformationToSelectDishButton' class='btn btn-warning' type='button'>Go back and edit dinner</a> 

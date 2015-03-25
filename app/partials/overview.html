@@ -1,0 +1,33 @@
+  <!-- Overview -->
+
+
+  <div id="Overview">
+    <div class='col-sm-12' id='selectdish'> 
+	<div class='col-sm-6'> 
+	  <h1>My Dinner: {{getNumberOfGuests()}} people</h1> 
+	</div> 
+    <div class='col-sm-6'> 
+	  <button id='dinnerOverviewToSelectDish' class='btn btn-warning' type='button' style='float:right; padding:10pt;'>Go back and edit dinner</button> 
+	</div> 
+  </div> 
+  <div class='col-sm-12' id='dishOverviewPicturesDiv'> 
+	<div class='col-sm-12 col-centered' id='dishOverview'> 
+	  <div style='padding:10pt' id='overviewPict'>
+
+	  	<div class='img' ng-repeat="dish in menu()">
+			<a id='dish.RecipeID' class='clickAbleDish'>
+			<img ng-src="{{dish.HeroPhotoUrl}}" width='110' height='90'>
+			<div class='desc'>{{dish.Title}} </div>
+		</div>	
+
+
+	  </div> 
+	</div> 
+  </div> 
+  <div class='col-sm-12'> 
+	<a href="#/preparation" id='dinnerOverviewToDinnerPreparation' class='btn btn-warning'type='button' style='padding:10pt'>Print Full Recipe</a> 
+  </div>  
+  </div> <!-- Overview is over-->
+
+
+

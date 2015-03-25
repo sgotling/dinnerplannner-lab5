@@ -19,7 +19,7 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
   // and selected dinner options for dinner menu
     var numberOfGuests = 1;
     var menu = [];
-    this.selectedDish = 0;
+    this.selectedDish;
     
 
     var _this = this;
@@ -28,47 +28,6 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     this.DishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:25,api_key:'dvx6j4dEVCjgc02u8V5y928UJ4KjIO04'});
     this.Dish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'dvx6j4dEVCjgc02u8V5y928UJ4KjIO04'}); 
 
-
-    // this.getAllDishesApi = function(titleKeyword) {
-    //     var apiKey = "dvx6j4dEVCjgc02u8V5y928UJ4KjIO04";
-    //     // var titleKeyword = "appetizer";
-    //     // var titleKeyword = "main course";
-    //     var url = "http://api.bigoven.com/recipes?pg=1&rpp=25&title_kw="
-    //               + titleKeyword 
-    //               + "&api_key="+apiKey;
-    //     $.ajax({
-    //         type: "GET",
-    //         dataType: 'json',
-    //         cache: false,
-    //         url: url,
-    //         success: function (data) {
-    //             _this.dishCash = data.Results;
-    //             return data.Results;
-    //         },
-    //         error: function (){
-    //         }
-    //     });
-    // }
-
-    //   this.collectedDish = "";
-
-    //     this.getDishByID = function(recipeID) {
-    //       var apiKey = "dvx6j4dEVCjgc02u8V5y928UJ4KjIO04";
-    //     var url = "http://api.bigoven.com/recipe/" + recipeID + "?api_key="+apiKey;
-    //   $.ajax({
-    //         type: "GET",
-    //         dataType: 'json',
-    //         cache: false,
-    //         url: url,
-            
-    //         success: function (data) {    
-    //             _this.collectedDish = data;
-    //             // _this.dishCash = data;
-    //           },
-    //           error: function (xhr){
-    //         }
-    //        });
-    //      }
 
     this.setSelectedDish = function (dishId) {
       this.selectedDish = dishId;
@@ -149,8 +108,16 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
       }
       totalPrice = totalPrice * numberOfGuests;
       return totalPrice;
-      
+  }
 
+  this.getDishPrice = function (dish) {
+    var price = 0;
+    for(var ing in dish.Ingredients){
+
+      price += dish.Ingredients[ing].MetricQuantity;
+    }
+
+    return price
   }
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
@@ -158,15 +125,15 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
   this.addDishToMenu = function(dish) {
     //TODO Lab 2
     // Category: "Appetizers"
-      var index = 0;
-      var type = dish.Category;
-while(index < menu.length){
-  if(type === menu[index].Category) {
-    menu.splice(index,1);
+//       var index = 0;
+//       var type = _this.selectedDish.Category;
+// while(index < menu.length){
+//   if(type === menu[index].Category) {
+//     menu.splice(index,1);
     
-  }
-  index = index + 1;
-}
+//   }
+//   index = index + 1;
+// }
       menu.push(dish);
   }
 

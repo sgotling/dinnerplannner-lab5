@@ -7,12 +7,16 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
   // Check the app.js to figure out what is the paramName in this case
 
   // console.log($routingParams.ngResource);
-  var dishID = 791654;
+  var dishID = 158689;
   $scope.dishID = dishID;
   $scope.dish = Dinner.Dish.get({id:dishID});
 
+  Dinner.setSelectedDish = $scope.dish;
+
   $scope.addDishToMenu = function () {
+    console.log($scope.dish);
   	Dinner.addDishToMenu($scope.dish);
+    console.log(Dinner.getFullMenu());
   }
 
 });
