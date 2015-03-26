@@ -17,7 +17,9 @@ dinnerPlannerApp.controller('SearchCtrl', function ($scope,Dinner) {
    });
  }
 
-
+ $scope.setSelectedDishID = function (ID) {
+   Dinner.setSelectedDishID(ID);
+ }
 
 
   // TODO in Lab 5: you will need to implement a method that searchers for dishes

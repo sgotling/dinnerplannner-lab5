@@ -32,8 +32,8 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     this.setSelectedDish = function (dishId) {
       this.selectedDish = dishId;
     }
-
-
+    
+  
   this.setNumberOfGuests = function(num) {
     //TODO Lab 2
       numberOfGuests = num;

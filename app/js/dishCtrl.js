@@ -12,7 +12,8 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
   $scope.dish = Dinner.Dish.get({id:dishID});
 
   Dinner.setSelectedDish = $scope.dish;
-
+  var currentId = $routeParams.id;
+  console.log($routeParams.id);
   $scope.addDishToMenu = function () {
     console.log($scope.dish);
   	Dinner.addDishToMenu($scope.dish);
