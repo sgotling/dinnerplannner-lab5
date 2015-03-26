@@ -3,7 +3,7 @@
 // dependency on any service you need. Angular will insure that the
 // service is created first time it is needed and then just reuse it
 // the next time.
-dinnerPlannerApp.factory('Dinner',function ($resource) {
+dinnerPlannerApp.factory('Dinner', function ($resource, $cookieStore) {
   
 
   // TODO in Lab 5: Add your model code from previous labs
@@ -19,29 +19,53 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
   // and selected dinner options for dinner menu
     var numberOfGuests = 1;
     var menu = [];
-    this.selectedDish;
     
+    this.menuCookieCache = [];
+    this.notNumberOfGuestsCookie = 5;
 
     var _this = this;
     this.dishCash = {};
-
+    this.selectedDishID = 0;
     this.DishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:25,api_key:'dvx6j4dEVCjgc02u8V5y928UJ4KjIO04'});
     this.Dish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'dvx6j4dEVCjgc02u8V5y928UJ4KjIO04'}); 
 
 
-    this.setSelectedDish = function (dishId) {
-      this.selectedDish = dishId;
+// 559510
+// 591648
+// 572571
+// 167511
+
+// $cookieStore.put('menuByID', [167511,57257,591648,559510]);
+
+    this.addDishesToMenuFromCookie = function () {
+      _this.menuCookieCache = $cookieStore.get('menuByID');
+      for(var i in _this.menuCookieCache){
+        var id = _this.menuCookieCache[i];
+        var dish = _this.Dish.get({id:id});
+        menu.push(dish);
+        
+      }
     }
-    
-  
+    this.addDishesToMenuFromCookie();
+
+
+
+    this.setSelectedDishID = function (dishId) {
+      _this.selectedDishID = dishId;
+    }
+
+
   this.setNumberOfGuests = function(num) {
     //TODO Lab 2
       numberOfGuests = num;
+      $cookieStore.put('numberOfGuests', num);
+      // $cookieStore.put('numberOfGuests', numberOfGuests);
   }
 
   // should return 
   this.getNumberOfGuests = function() {
     //TODO Lab 2
+    numberOfGuests = $cookieStore.get('numberOfGuests');
       return numberOfGuests;
       
 
@@ -134,7 +158,12 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
 //   }
 //   index = index + 1;
 // }
+
+
       menu.push(dish);
+      _this.menuCookieCache.push(dish.RecipeID);
+      $cookieStore.put('menuByID', _this.menuCookieCache);
+      // console.log("notMenuCookie ", _this.notMenuCookie);
   }
 
   //Removes dish from menu
@@ -152,7 +181,11 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
          index += 1;
          } 
     }
-    console.log("menu in model", menu)
+    var dishIndex = _this.menuCookieCache.indexOf(id);
+    _this.menuCookieCache.splice(dishIndex, 1);
+    $cookieStore.put('menuByID', _this.menuCookieCache);
+    var menuCookie = $cookieStore.get('menuByID');
+    console.log('menuByID', menuCookie);
   }
 
 

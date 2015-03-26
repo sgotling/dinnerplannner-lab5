@@ -26,7 +26,7 @@ not support it in free version) and list all the dishes that match the search. -
 	  	{{selectedDish}}
 		{{status}}
 		<div class='img' ng-repeat="dish in dishes">
-			<a id=dish.RecipeID class='clickAbleDish' ng-click="selectedDish = dish.RecipeID" ng-href="#/dish/{{dish.RecipeID}}">
+			<a id=dish.RecipeID class='clickAbleDish' ng-click="setSelectedDishID(dish.RecipeID)" ng-href="#/dish/{{dish.RecipeID}}">
 			<img  ng-src="{{dish.ImageURL}}" width='110' height='90'/>
 			<div class='desc'>{{dish.Title}} </div>
 			</a>
